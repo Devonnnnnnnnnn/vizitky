@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Number List with Status</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    #searchBox {
+      margin-bottom: 20px;
+      padding: 8px;
+      font-size: 16px;
+      width: 200px;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      padding: 8px;
+      border: 1px solid #ddd;
+      margin-bottom: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .tag {
+      padding: 4px 10px;
+      border-radius: 12px;
+      color: white;
+      font-weight: bold;
+      cursor: default;
+    }
+    .ano {
+      background-color: green;
+    }
+    .ne {
+      background-color: red;
+    }
+    .highlight {
+      background-color: yellow !important;
+      transition: background-color 0.3s ease;
+    }
+  </style>
+</head>
+<body>
+
+  <input type="text" id="searchBox" placeholder="Search number..." />
+
+  <ul id="numberList">
+    <li data-number="1683">
+      <span>1683</span>
+      <span class="tag ano">ano</span>
+    </li>
+    <li data-number="1701">
+      <span>1701</span>
+      <span class="tag ne">ne</span>
+    </li>
+    <li data-number="1750">
+      <span>1750</span>
+      <span class="tag ano">ano</span>
+    </li>
+    <li data-number="1800">
+      <span>1800</span>
+      <span class="tag ne">ne</span>
+    </li>
+    <!-- Add more items as needed -->
+  </ul>
+
+  <script>
+    const searchBox = document.getElementById('searchBox');
+    const numberList = document.getElementById('numberList');
+    let highlightedItem = null;
+
+    function removeHighlight() {
+      if (highlightedItem) {
+        highlightedItem.classList.remove('highlight');
+        highlightedItem = null;
+      }
+    }
+
+    searchBox.addEventListener('input', () => {
+      removeHighlight();
+
+      const searchTerm = searchBox.value.trim();
+
+      if (!searchTerm) return;
+
+      const item = [...numberList.children].find(
+        li => li.dataset.number === searchTerm
+      );
+
+      if (item) {
+        item.classList.add('highlight');
+        highlightedItem = item;
+        // Scroll to the item smoothly
+        item.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    });
+
+    // Remove highlight on scroll or any page movement
+    window.addEventListener('scroll', removeHighlight);
+    window.addEventListener('wheel', removeHighlight);
+    window.addEventListener('keydown', removeHighlight);
+    window.addEventListener('touchmove', removeHighlight);
+  </script>
+
+</body>
+</html>
