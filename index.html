@@ -1,112 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Number List with Status</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-    }
-    #searchBox {
-      margin-bottom: 20px;
-      padding: 8px;
-      font-size: 16px;
-      width: 200px;
-    }
-    ul {
-      list-style-type: none;
-      padding: 0;
-    }
-    li {
-      padding: 8px;
-      border: 1px solid #ddd;
-      margin-bottom: 5px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .tag {
-      padding: 4px 10px;
-      border-radius: 12px;
-      color: white;
-      font-weight: bold;
-      cursor: default;
-    }
-    .ano {
-      background-color: green;
-    }
-    .ne {
-      background-color: red;
-    }
-    .highlight {
-      background-color: yellow !important;
-      transition: background-color 0.3s ease;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Simple Number List</title>
+<style>
+  body {
+    font-family: monospace, monospace;
+    padding: 20px;
+  }
+  #searchBox {
+    margin-bottom: 15px;
+    padding: 8px;
+    font-size: 16px;
+    width: 180px;
+  }
+  ul {
+    padding-left: 0;
+  }
+  li {
+    list-style-type: none;
+    padding: 6px 0;
+  }
+  .highlight {
+    background-color: yellow;
+  }
+</style>
 </head>
 <body>
 
-  <input type="text" id="searchBox" placeholder="Search number..." />
+<input id="searchBox" placeholder="Search number..." />
 
-  <ul id="numberList">
-    <li data-number="1683">
-      <span>1683</span>
-      <span class="tag ano">ano</span>
-    </li>
-    <li data-number="1701">
-      <span>1701</span>
-      <span class="tag ne">ne</span>
-    </li>
-    <li data-number="1750">
-      <span>1750</span>
-      <span class="tag ano">ano</span>
-    </li>
-    <li data-number="1800">
-      <span>1800</span>
-      <span class="tag ne">ne</span>
-    </li>
-    <!-- Add more items as needed -->
-  </ul>
+<ul id="numberList">
+  <li data-number="1683">1683 — Mám: ano</li>
+  <li data-number="1701">1701 — Mám: ne</li>
+  <li data-number="1750">1750 — Mám: ano</li>
+  <li data-number="1800">1800 — Mám: ne</li>
+  <li data-number="1850">1850 — Mám: ano</li>
+  <!-- Add more as needed -->
+</ul>
 
-  <script>
-    const searchBox = document.getElementById('searchBox');
-    const numberList = document.getElementById('numberList');
-    let highlightedItem = null;
+<script>
+  const searchBox = document.getElementById('searchBox');
+  const numberList = document.getElementById('numberList');
+  let highlightedItem = null;
 
-    function removeHighlight() {
-      if (highlightedItem) {
-        highlightedItem.classList.remove('highlight');
-        highlightedItem = null;
-      }
+  function clearHighlight() {
+    if (highlightedItem) {
+      highlightedItem.classList.remove('highlight');
+      highlightedItem = null;
     }
+  }
 
-    searchBox.addEventListener('input', () => {
-      removeHighlight();
+  searchBox.addEventListener('input', () => {
+    clearHighlight();
 
-      const searchTerm = searchBox.value.trim();
+    const val = searchBox.value.trim();
 
-      if (!searchTerm) return;
+    if (!val) return;
 
-      const item = [...numberList.children].find(
-        li => li.dataset.number === searchTerm
-      );
+    const item = [...numberList.children].find(li => li.dataset.number === val);
 
-      if (item) {
-        item.classList.add('highlight');
-        highlightedItem = item;
-        // Scroll to the item smoothly
-        item.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
-    });
+    if (item) {
+      item.classList.add('highlight');
+      highlightedItem = item;
+      item.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  });
 
-    // Remove highlight on scroll or any page movement
-    window.addEventListener('scroll', removeHighlight);
-    window.addEventListener('wheel', removeHighlight);
-    window.addEventListener('keydown', removeHighlight);
-    window.addEventListener('touchmove', removeHighlight);
-  </script>
+  // Remove highlight on scroll or page move
+  window.addEventListener('scroll', clearHighlight);
+  window.addEventListener('wheel', clearHighlight);
+  window.addEventListener('keydown', clearHighlight);
+  window.addEventListener('touchmove', clearHighlight);
+</script>
 
 </body>
 </html>
