@@ -1,139 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Turistické vizitky</title>
-<style>
-  body {
-    font-family: monospace, monospace;
-    padding: 20px;
-  }
-  #searchBox {
-    margin-bottom: 15px;
-    padding: 8px;
-    font-size: 16px;
-    width: 180px;
-  }
-  ul {
-    padding-left: 0;
-  }
-  li {
-    list-style-type: none;
-    padding: 6px 0;
-  }
-  .highlight {
-    background-color: yellow;
-  }
-  /* Freeze overlay to block interaction */
-  #freezeOverlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: transparent;
-    z-index: 9999;
-    display: none;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Turistické vizitky</title>
+  <style>
+    body {
+      font-family: monospace, monospace;
+      padding: 20px;
+    }
+    #searchBox {
+      margin-bottom: 15px;
+      padding: 8px;
+      font-size: 16px;
+      width: 180px;
+    }
+    ul {
+      padding-left: 0;
+    }
+    li {
+      list-style-type: none;
+      padding: 6px 0;
+    }
+    .highlight {
+      background-color: yellow;
+    }
+    /* Freeze overlay to block interaction */
+    #freezeOverlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: transparent;
+      z-index: 9999;
+      display: none;
+    }
+  </style>
 </head>
 <body>
+  <input id="searchBox" placeholder="Hledát vizitku..." />
+  <ul id="numberList">
+    <li data-number="459">459 — Mám: Ano</li>
+    <li data-number="353">353 — Mám: Ano</li>
+    <li data-number="4403">4403 — Mám: Ano</li>
+    <li data-number="358">358— Mám: Ano</li>
+    <li data-number="357">357 — Mám: Ano</li>
+    <li data-number="356">356 — Mám: Ano</li>
+    <li data-number="1223">1223 — Mám: Ano</li>
+    <li data-number="230">230 — Mám: Ano</li>
+    <li data-number="660">660 — Mám: Ano</li>
+    <li data-number="456">456 — Mám: Ano</li>
+    <li data-number="91">91 — Mám: Ano</li>
+    <li data-number="2074">2074 — Mám: Ano</li>
+    <li data-number="2356">2356 — Mám: Ano</li>
+    <li data-number="387">387 — Mám: Ano</li>
+    <li data-number="1888">1888 — Mám: Ano</li>
+    <li data-number="1026">1026 — Mám: Ano</li>
+    <li data-number="668">668 — Mám: Ano</li>
+    <li data-number="2046">2046 — Mám: Ano</li>
+    <li data-number="1986">1986 — Mám: Ano</li>
+    <li data-number="973">973 — Mám: Ano</li>
+    <li data-number="3993">3993 — Mám: Ano</li>
+    <li data-number="3222">3222 — Mám: Ano</li>
+    <li data-number="5302">5302 — Mám: Ano</li>
+    <li data-number="1080">1080— Mám: Ano</li>
+    <li data-number="973">973 — Mám: Ano</li>
+    <li data-number="1057">1057 — Mám: Ano</li>
+    <li data-number="2986">2986 — Mám: Ano</li>
+    <li data-number="1056">1056 — Mám: Ano</li>
+    <li data-number="1430">1430 — Mám: Ano</li>
+    <li data-number="112">112 — Mám: Ano</li>
+    <li data-number="46">46 — Mám: Ano</li>
+    <li data-number="3296">3296 — Mám: Ano</li>
+    <li data-number="316">316 — Mám: Ano</li>
+    <li data-number="315">315 — Mám: Ano</li>
+    <li data-number="2000">2000 — Mám: Ano</li>
+    <li data-number="4900">4900 — Mám: Ano</li>
+    <li data-number="C109">C109 — Mám: Ano</li>
+    <li data-number="580">580 — Mám: Ano</li>
+    <li data-number="43">43 — Mám: Ano</li>
+    <li data-number="4558">4558 — Mám: Ano</li>
+    <li data-number="1865">1865 — Mám: Ano</li>
+    <li data-number="2835">2835— Mám: Ano</li>
+    <li data-number="2836">2836 — Mám: Ano</li>
+    <li data-number="3484">3484 — Mám: Ano</li>
+    <li data-number="593">593 — Mám: Ano</li>
+    <li data-number="412">412 — Mám: Ano</li>
+    <li data-number="5504">5504 — Mám: Ano</li>
+    <li data-number="230">230 — Mám: Ano</li>
+    <li data-number="653">653 — Mám: Ano</li>
+    <li data-number="1219">1219 — Mám: Ano</li>
+    <li data-number="2356">2356 — Mám: Ano</li>
+    <li data-number="3117">3117 — Mám: Ano</li>
+    <li data-number="1928">1928 — Mám: Ano</li>
+    <li data-number="2479">2479 — Mám: Ano</li>
+    <li data-number="V199">V199 — Mám: Ano</li>
+    <li data-number="110">110 — Mám: Ano</li>
+    <li data-number="90">90 — Mám: Ano</li>
+    <li data-number="3581">3851 — Mám: Ano</li>
+  </ul>
+  <div id="freezeOverlay"></div>
+  <script>
+    const searchBox = document.getElementById('searchBox');
+    const numberList = document.getElementById('numberList');
+    const freezeOverlay = document.getElementById('freezeOverlay');
+    let highlightedItem = null;
+    let highlightTimeout = null;
 
-<input id="searchBox" placeholder="Hledát vizitku..." />
+    // Remove duplicate <li> elements based on data-number, keeping only the first occurrence
+    const seenNumbers = new Set();
+    [...numberList.children].forEach(li => {
+      const number = li.dataset.number;
+      if (seenNumbers.has(number)) {
+        li.remove();
+      } else {
+        seenNumbers.add(number);
+      }
+    });
 
-<ul id="numberList">
-  <li data-number="459">459 — Mám: Ano</li>
-  <li data-number="353">353 — Mám: Ano</li>
-  <li data-number="4403">4403 — Mám: Ano</li>
-  <li data-number="358">358— Mám: Ano</li>
-  <li data-number="357">357 — Mám: Ano</li>
-  <li data-number="356">356 — Mám: Ano</li>
-  <li data-number="1223">1223 — Mám: Ano</li>
-  <li data-number="230">230 — Mám: Ano</li>
-  <li data-number="660">660 — Mám: Ano</li>
-  <li data-number="456">456 — Mám: Ano</li>
-  <li data-number="91">91 — Mám: Ano</li>
-  <li data-number="2074">2074 — Mám: Ano</li>
-  <li data-number="2356">2356 — Mám: Ano</li>
-  <li data-number="387">387 — Mám: Ano</li>
-  <li data-number="1888">1888 — Mám: Ano</li>
-  <li data-number="1026">1026 — Mám: Ano</li>
-  <li data-number="668">668 — Mám: Ano</li>
-  <li data-number="2046">2046 — Mám: Ano</li>
-  <li data-number="1986">1986 — Mám: Ano</li>
-  <li data-number="973">973 — Mám: Ano</li>
-  <li data-number="3993">3993 — Mám: Ano</li>
-  <li data-number="3222">3222 — Mám: Ano</li>
-  <li data-number="5302">5302 — Mám: Ano</li>
-  <li data-number="1080">1080— Mám: Ano</li>
-  <li data-number="973">973 — Mám: Ano</li>
-  <li data-number="1057">1057 — Mám: Ano</li>
-  <li data-number="2986">2986 — Mám: Ano</li>
-  <li data-number="1056">1056 — Mám: Ano</li>
-  <li data-number="1430">14300 — Mám: Ano</li>
-  <li data-number="112">112 — Mám: Ano</li>
-  <li data-number="46">46 — Mám: Ano</li>
-  <li data-number="3296">3296 — Mám: Ano</li>
-  <li data-number="316">316 — Mám: Ano</li>
-  <li data-number="315">315 — Mám: Ano</li>
-  <li data-number="2000">2000 — Mám: Ano</li>
-  <li data-number="4900">4900 — Mám: Ano</li>
-  <li data-number="C109">C109 — Mám: Ano</li>
-  <li data-number="580">580 — Mám: Ano</li>
-  <li data-number="43">43 — Mám: Ano</li>
-  <li data-number="4558">4558 — Mám: Ano</li>
-</ul>
-
-<div id="freezeOverlay"></div>
-
-<script>
-  const searchBox = document.getElementById('searchBox');
-  const numberList = document.getElementById('numberList');
-  const freezeOverlay = document.getElementById('freezeOverlay');
-  let highlightedItem = null;
-  let highlightTimeout = null;
-
-  function clearHighlight() {
-    if (highlightedItem) {
-      highlightedItem.classList.remove('highlight');
-      highlightedItem = null;
+    function clearHighlight() {
+      if (highlightedItem) {
+        highlightedItem.classList.remove('highlight');
+        highlightedItem = null;
+      }
+      if (highlightTimeout) {
+        clearTimeout(highlightTimeout);
+        highlightTimeout = null;
+      }
+      freezeOverlay.style.display = 'none'; // remove freeze overlay
+      document.body.style.overflow = ''; // restore scroll
     }
-    if (highlightTimeout) {
-      clearTimeout(highlightTimeout);
-      highlightTimeout = null;
+
+    function freezeScreen() {
+      freezeOverlay.style.display = 'block';
+      document.body.style.overflow = 'hidden'; // disable scroll
     }
-    freezeOverlay.style.display = 'none'; // remove freeze overlay
-    document.body.style.overflow = ''; // restore scroll
-  }
 
-  function freezeScreen() {
-    freezeOverlay.style.display = 'block';
-    document.body.style.overflow = 'hidden'; // disable scroll
-  }
+    searchBox.addEventListener('input', () => {
+      clearHighlight();
 
-  searchBox.addEventListener('input', () => {
-    clearHighlight();
+      const val = searchBox.value.trim();
 
-    const val = searchBox.value.trim();
+      if (!val) return;
 
-    if (!val) return;
+      const item = [...numberList.children].find(li => li.dataset.number === val);
 
-    const item = [...numberList.children].find(li => li.dataset.number === val);
+      if (item) {
+        item.classList.add('highlight');
+        highlightedItem = item;
+        item.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-    if (item) {
-      item.classList.add('highlight');
-      highlightedItem = item;
-      item.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        freezeScreen();
 
-      freezeScreen();
-
-      highlightTimeout = setTimeout(() => {
-        clearHighlight();
-      }, 5000);
-    }
-  });
-</script>
-
+        highlightTimeout = setTimeout(() => {
+          clearHighlight();
+        }, 5000);
+      }
+    });
+  </script>
 </body>
 </html>
